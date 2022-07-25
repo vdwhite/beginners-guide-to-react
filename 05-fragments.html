@@ -4,11 +4,28 @@
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
-    const element = (
+    const element = React.createElement("span", null, "hello element 1 here;");
+    const element2 = React.createElement("span", null, "hi this is element 2");
+    // Using React.createElement API
+    const renderElement = React.createElement(
+      React.Fragment,
+      null,
+      element,
+      " ",
+      element2
+    );
+
+    //Using JSX
+    const jsxElement = (
+      // Use empty open+closing bracket to replace React.Fragment
       <>
-        <span>Hello</span> <span>World</span>
+        <span>Hello this is element 1 in jsx element</span>
+        <span>And this is element 2</span>
       </>
-    )
-    ReactDOM.render(element, document.getElementById('root'))
+    );
+    ReactDOM.render(
+      [renderElement, jsxElement],
+      document.getElementById("root")
+    );
   </script>
 </body>

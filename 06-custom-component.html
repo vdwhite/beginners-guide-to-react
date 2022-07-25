@@ -4,17 +4,24 @@
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
-    function Message({children}) {
-      return <div className="message">{children}</div>
+    function Message({ children }) {
+      return <div className="message">{children}</div>;
     }
+
+    const Msg = (props) => <div className="msg">{props.msg}</div>;
 
     const element = (
       <div className="container">
+        <Msg msg="hello from Msg" />
+        <Msg msg={["hello from Msg1", "hello from Msg2 "]} />
         <Message>Hello World</Message>
         <Message>Goodbye World</Message>
       </div>
-    )
+    );
 
-    ReactDOM.render(element, document.getElementById('root'))
+    ReactDOM.render(element, document.getElementById("root"));
+    console.log(<Msg msg="hello from msg" />);
+    console.log(<Message>Hello message</Message>);
+    console.log(<div>Hello div</div>);
   </script>
 </body>

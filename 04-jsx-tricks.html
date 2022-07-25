@@ -4,11 +4,16 @@
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
-    const rootElement = document.getElementById('root')
-    const children = 'Hello World'
-    const className = 'container'
-    const props = {children, className}
-    const element = <div {...props} />
-    ReactDOM.render(element, rootElement)
+    const rootElement = document.getElementById("root");
+    const children = "Hello World";
+    const children1 = "This is for children 1";
+    const children2 = "This is for children 2";
+    const className = "container";
+
+    const element1 = <div className={className} children={children2} />;
+
+    const props = { children, className };
+    const element = <div {...props} className="not container" />;
+    ReactDOM.render([element, element1], rootElement);
   </script>
 </body>
