@@ -5,15 +5,16 @@
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
     function UsernameForm() {
-      const [username, setUsername] = React.useState('')
+      const [username, setUsername] = React.useState("");
 
       function handleSubmit(event) {
-        event.preventDefault()
-        alert(`You entered: ${username}`)
+        event.preventDefault();
+        alert(`You entered: ${username}`);
       }
 
       function handleChange(event) {
-        setUsername(event.target.value.toLowerCase())
+        // Setting the input values to lowercase so no upper case after changed
+        setUsername(event.target.value.toLowerCase());
       }
 
       return (
@@ -29,9 +30,9 @@
           </div>
           <button type="submit">Submit</button>
         </form>
-      )
+      );
     }
 
-    ReactDOM.render(<UsernameForm />, document.getElementById('root'))
+    ReactDOM.render(<UsernameForm />, document.getElementById("root"));
   </script>
 </body>

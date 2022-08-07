@@ -6,14 +6,15 @@
   <script type="text/babel">
     function Greeting() {
       const [name, setName] = React.useState(
-        () => window.localStorage.getItem('name') || '',
-      )
+        () => window.localStorage.getItem("name") || ""
+      );
 
       React.useEffect(() => {
-        window.localStorage.setItem('name', name)
-      }, [name])
+        window.localStorage.setItem("name", name);
+        // Pass in dependency array to stay the state sync
+      }, [name]);
 
-      const handleChange = event => setName(event.target.value)
+      const handleChange = (event) => setName(event.target.value);
 
       return (
         <div>
@@ -21,21 +22,21 @@
             <label htmlFor="name">Name: </label>
             <input value={name} onChange={handleChange} id="name" />
           </form>
-          {name ? <strong>Hello {name}</strong> : 'Please type your name'}
+          {name ? <strong>Hello {name}</strong> : "Please type your name"}
         </div>
-      )
+      );
     }
 
     function App() {
-      const [count, setCount] = React.useState(0)
+      const [count, setCount] = React.useState(0);
       return (
         <>
-          <button onClick={() => setCount(c => c + 1)}>{count}</button>
+          <button onClick={() => setCount((c) => c + 1)}>{count}</button>
           <Greeting />
         </>
-      )
+      );
     }
 
-    ReactDOM.render(<App />, document.getElementById('root'))
+    ReactDOM.render(<App />, document.getElementById("root"));
   </script>
 </body>

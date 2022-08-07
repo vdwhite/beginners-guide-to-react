@@ -24,33 +24,65 @@
       height: 90px;
     }
   </style>
+
   <script type="text/babel">
-    function Box({style, size, className = '', ...rest}) {
-      const sizeClassName = size ? `box--${size}` : ''
+    function Box({ style, size, className = "", ...rest }) {
+      const sizeClassName = size ? `box--${size}` : "";
       return (
         <div
           className={`box ${className} ${sizeClassName}`}
-          style={{fontStyle: 'italic', ...style}}
+          style={{ fontStyle: "italic", ...style }}
           {...rest}
         />
-      )
+      );
     }
 
+    const CustomBox = (props) => {
+      const sizeClassName = props.size ? `box--${props.size}` : "";
+      const classNameForBox = props.className ? `props.className` : "";
+      return (
+        <div
+          className={`box ${sizeClassName} ${classNameForBox}`}
+          style={{ fontStyle: "italic", ...props.style }}
+        >
+          {props.rest}
+        </div>
+      );
+    };
     const element = (
       <div>
-        <Box size="small" style={{backgroundColor: 'lightblue'}}>
+        <Box size="small" style={{ backgroundColor: "lightblue" }}>
           small lightblue box
         </Box>
-        <Box size="medium" style={{backgroundColor: 'pink'}}>
-          medium pink box
+        <CustomBox
+          size="small"
+          style={{ backgroundColor: "lightblue" }}
+          rest="small lightblue box"
+        />
+
+        <Box size="medium" style={{ backgroundColor: "pink" }}>
+          medium pink boxsizeless box
         </Box>
-        <Box size="large" style={{backgroundColor: 'orange'}}>
+        <CustomBox
+          size="medium"
+          style={{ backgroundColor: "pink" }}
+          rest="medium pink box"
+        />
+        <Box size="large" style={{ backgroundColor: "orange" }}>
           large orange box
         </Box>
-        <Box>sizeless box</Box>
-      </div>
-    )
 
-    ReactDOM.render(element, document.getElementById('root'))
+        <CustomBox
+          size="large"
+          style={{ backgroundColor: "orange" }}
+          rest="large orange box"
+        />
+
+        <Box>sizeless box</Box>
+        <CustomBox rest="sizeless box" />
+      </div>
+    );
+
+    ReactDOM.render(element, document.getElementById("root"));
   </script>
 </body>

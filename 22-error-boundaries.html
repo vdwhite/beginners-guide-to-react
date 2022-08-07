@@ -5,7 +5,10 @@
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script src="https://unpkg.com/react-error-boundary@1.2.5/dist/umd/react-error-boundary.js"></script>
   <script type="text/babel">
-    const ErrorBoundary = ReactErrorBoundary.ErrorBoundary
+    // Use third party package to create error boundary
+    const ErrorBoundary = ReactErrorBoundary.ErrorBoundary;
+
+    // The error boundary has to be class component without package
     // class ErrorBoundary extends React.Component {
     //   state = {error: null}
     //   static getDerivedStateFromError(error) {
@@ -21,34 +24,37 @@
     //   }
     // }
 
-    function ErrorFallback({error}) {
+    function ErrorFallback({ error }) {
       return (
         <div>
           <p>Something went wrong:</p>
           <pre>{error.message}</pre>
         </div>
-      )
+      );
     }
 
     function Bomb() {
-      throw new Error('💥 CABOOM 💥')
+      throw new Error("💥 CABOOM 💥");
     }
 
     function App() {
-      const [explode, setExplode] = React.useState(false)
+      const [explode, setExplode] = React.useState(false);
       return (
         <div>
           <div>
             <button onClick={() => setExplode(true)}>💣</button>
           </div>
           <div>
+            {/*Error boundary will handle all erros from its descendents*/}
+
             <ErrorBoundary FallbackComponent={ErrorFallback}>
-              {explode ? <Bomb /> : 'Push the button Max!'}
+              {/*explode will always be true after clicking ^*/}
+              {explode ? <Bomb /> : "Push the button Max!"}
             </ErrorBoundary>
           </div>
         </div>
-      )
+      );
     }
-    ReactDOM.render(<App />, document.getElementById('root'))
+    ReactDOM.render(<App />, document.getElementById("root"));
   </script>
 </body>
